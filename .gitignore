@@ -3,4 +3,6 @@
 
 venv/
 .vscode/
+__pycache__/
+
 check.py
