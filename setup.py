@@ -19,7 +19,7 @@ setup(
     description="CRUD database for discord bots, using discord text channels to store data",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    # url="https://opensea.readthedocs.io/", # TASKETE KUDASAI :(
+    url="https://github.com/ankushKun/discord-db",
     author="Ankush Singh",
     author_email="ankush4singh@gmail.com",
     license="MIT",
