@@ -14,7 +14,7 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 
 # This call to setup() does all the work
 setup(
-    name="DiscordDatabse",
+    name="DiscordDatabase",
     version="0.1.1",
     description="CRUD database for discord bots, using discord text channels to store data",
     long_description=long_description,
