@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+echo "
+Increment version before running this script"
+sleep 2
+
+echo "
+removing old builds"
+sleep 2
+rm -rf dist
+rm -rf build
+rm -rf discordDB.egg-info
+
+echo "
+building sdist and bdist_wheel"
+sleep 2
+python3 setup.py sdist bdist_wheel
+
+echo "
+checking for errors"
+sleep 2
+twine check dist/*
+
+echo "
+uploading to PyPi"
+sleep 2
+twine upload dist/* --verbose
+
+
+echo "
+pushing changes to github"
+sleep 2
+git add .
+git commit -m "$1"
+git push
