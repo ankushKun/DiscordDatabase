@@ -7,6 +7,6 @@ __pycache__/
 
 build/
 dist/
-discordDB.egg-info/
+DiscordDatabase.egg-info/
 
 check.py

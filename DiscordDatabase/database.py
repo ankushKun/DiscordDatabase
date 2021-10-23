@@ -1,5 +1,5 @@
 import json
-from discordDB.common_functions import key_check, search_key
+from DiscordDatabase.common_functions import key_check, search_key
 
 
 class Database:

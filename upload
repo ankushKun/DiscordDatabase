@@ -9,7 +9,7 @@ removing old builds"
 sleep 2
 rm -rf dist
 rm -rf build
-rm -rf discordDB.egg-info
+rm -rf DiscordDatabase.egg-info
 
 echo "
 building sdist and bdist_wheel"

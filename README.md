@@ -5,7 +5,7 @@ A CRUD (Create Read Update Delete) database for python Discord bot developers. A
 ## Installation
 
 ```bash
-pip3 install discordDB
+pip3 install DiscordDatabase
 ```
 
 ## Getting Started

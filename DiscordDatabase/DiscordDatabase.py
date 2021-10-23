@@ -1,5 +1,5 @@
-from discordDB.common_functions import format_string
-from discordDB.database import Database
+from DiscordDatabase.common_functions import format_string
+from DiscordDatabase.database import Database
 
 
 class DiscordDatabase:

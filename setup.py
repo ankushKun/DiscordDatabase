@@ -14,12 +14,12 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 
 # This call to setup() does all the work
 setup(
-    name="discordDB",
+    name="DiscordDatabse",
     version="0.1.1",
     description="CRUD database for discord bots, using discord text channels to store data",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/ankushKun/discord-db",
+    url="https://github.com/ankushKun/DiscordDatabase",
     author="Ankush Singh",
     author_email="ankush4singh@gmail.com",
     license="MIT",
