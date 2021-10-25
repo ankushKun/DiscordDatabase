@@ -5,8 +5,8 @@ from DiscordDatabase.database import Database
 class DiscordDatabase:
     # This class takes care of creating categories and channels for the database
     def __init__(self, client, guild_id) -> None:
+        self.guild_id = guild_id
         self.client = client
-        self.__GUILD = client.get_guild(guild_id)
 
     async def __create(self, category_name: str, channel_name: str):
         category_name = format_string(category_name)  # No spaces allowed
@@ -48,6 +48,8 @@ class DiscordDatabase:
         return category, channel
 
     async def new(self, category_name, channel_name):
+        await self.client.wait_until_ready()
+        self.__GUILD = self.client.get_guild(self.guild_id)
         category, channel = await self.__create(category_name, channel_name)
         # This is the actual class that takes care of setting and getting data from the database
         return Database(category, channel)
