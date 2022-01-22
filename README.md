@@ -101,7 +101,7 @@ e.g.
 name = await database.get("name")
 # returns "Ankush"
 
-names = database.get("name_list") 
+names = await database.get("name_list") 
 # returns ["Ankush","Weeblet","ankooooSH"]
 
 age = await database.get("age")
