@@ -1,12 +1,15 @@
 import json
-from DiscordDatabase.common_functions import key_check, search_key
 from functools import cache
+
+from DiscordDatabase.common_functions import key_check, search_key
 
 
 class Database:
     def __init__(self, category_object, channel_object) -> None:
         self.__category = category_object
-        self.__channel = channel_object  # Channel in which all key value pairs are stored
+        self.__channel = (
+            channel_object  # Channel in which all key value pairs are stored
+        )
 
     def get_channel_id(self):
         return self.__channel.id
@@ -50,12 +53,12 @@ class Database:
             value = data[key]
             value_type = data["type"]
 
-            if value_type == 'int':
+            if value_type == "int":
                 value = int(value)
-            elif value_type == 'float':
+            elif value_type == "float":
                 value = float(value)
 
-            if value_type == 'bool':
+            if value_type == "bool":
                 value = bool(int(value))
         else:
             value = None
