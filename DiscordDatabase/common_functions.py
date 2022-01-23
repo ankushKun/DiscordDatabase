@@ -1,6 +1,6 @@
 import json
-from json.decoder import JSONDecodeError
 from functools import lru_cache
+from json.decoder import JSONDecodeError
 
 
 def str_is_illegal(s: str):
@@ -20,10 +20,10 @@ def key_check(key: str):
 
     if str_is_illegal(key):
         # 'key' should contain only alphabets and numbers
-        raise ValueError(
-            "Key should contain only alphanumeric character")
+        raise ValueError("Key should contain only alphanumeric character")
 
     return True
+
 
 @lru_cache
 async def search_key(key: str, channel):

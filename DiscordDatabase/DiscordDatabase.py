@@ -1,6 +1,8 @@
+from functools import cache
+
 from DiscordDatabase.common_functions import format_string
 from DiscordDatabase.database import Database
-from functools import cache
+
 
 class DiscordDatabase:
     # This class takes care of creating categories and channels for the database
@@ -11,7 +13,7 @@ class DiscordDatabase:
     @cache
     async def __create(self, category_name: str, channel_name: str):
         category_name = format_string(category_name)  # No spaces allowed
-        channel_name = format_string(channel_name)   # No spaces allowed
+        channel_name = format_string(channel_name)  # No spaces allowed
 
         if len(category_name) <= 0:
             raise ValueError("category_name should atleast have a length of 1")
@@ -19,8 +21,9 @@ class DiscordDatabase:
             raise ValueError("channel_name should atleast have a length of 1")
 
         ##### CATEGORY #####
-        category = list(filter(lambda c: c.name.casefold()
-                        == category_name, self.__GUILD.categories))
+        category = list(
+            filter(lambda c: c.name.casefold() == category_name,
+                   self.__GUILD.categories))
         # Returns a list of categories which have same name as 'category_name'
         # Should return a list containg only one category with a unique name
         # Empty list means category does not exists
@@ -33,8 +36,8 @@ class DiscordDatabase:
             category = category[0]
 
         ##### CHANNEL #####
-        channel = list(filter(lambda c: c.name ==
-                       channel_name, category.channels))
+        channel = list(
+            filter(lambda c: c.name == channel_name, category.channels))
         # Returns a list of channels under the category which have same name as 'channel_name'
         # Should return a list containg only one channel with a unique name
         # Empty list means channel doesnot exists
