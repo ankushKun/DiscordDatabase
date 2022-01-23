@@ -1,6 +1,7 @@
 import json
 from DiscordDatabase.common_functions import key_check, search_key
 from functools import cache
+import discord
 
 
 class Database:
@@ -8,9 +9,11 @@ class Database:
         self.__category = category_object
         self.__channel = channel_object  # Channel in which all key value pairs are stored
 
+    @discord.utils.cached_property
     def get_channel_id(self):
         return self.__channel.id
 
+    @discord.utils.cached_property
     def get_category_id(self):
         return self.__category.id
 
