@@ -1,5 +1,6 @@
 import json
 from json.decoder import JSONDecodeError
+from functools import lru_cache
 
 
 def str_is_illegal(s: str):
@@ -24,12 +25,10 @@ def key_check(key: str):
 
     return True
 
-
+@lru_cache
 async def search_key(key: str, channel):
-    channel_history = await channel.history(limit=None).flatten()
-
     found_key, in_message = None, None
-    for message in channel_history:
+    async for message in channel.history(limit=None):
         cnt = message.content
         try:
             data = json.loads(str(cnt))

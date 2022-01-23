@@ -1,1 +1,1 @@
-from DiscordDatabase.DiscordDatabase import DiscordDatabase
+from .DiscordDatabase import DiscordDatabase

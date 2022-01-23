@@ -1,6 +1,6 @@
 from DiscordDatabase.common_functions import format_string
 from DiscordDatabase.database import Database
-
+from functools import cache
 
 class DiscordDatabase:
     # This class takes care of creating categories and channels for the database
@@ -8,6 +8,7 @@ class DiscordDatabase:
         self.guild_id = guild_id
         self.client = client
 
+    @cache
     async def __create(self, category_name: str, channel_name: str):
         category_name = format_string(category_name)  # No spaces allowed
         channel_name = format_string(channel_name)   # No spaces allowed
@@ -47,6 +48,7 @@ class DiscordDatabase:
 
         return category, channel
 
+    @cache
     async def new(self, category_name, channel_name):
         await self.client.wait_until_ready()
         self.__GUILD = self.client.get_guild(self.guild_id)

@@ -1,5 +1,6 @@
 import json
 from DiscordDatabase.common_functions import key_check, search_key
+from functools import cache
 
 
 class Database:
@@ -13,12 +14,11 @@ class Database:
     def get_category_id(self):
         return self.__category.id
 
+    @cache
     async def set(self, key: str, value):
         key_check(key)
         if len(str(value)) <= 0:
             raise ValueError("value should atleast have a length of 1")
-
-        value_type = value.__class__.__name__
 
         # True/False should become 1/0
         # integers and floats should become strings
@@ -28,20 +28,21 @@ class Database:
         """
 
         # conversion into storable string
-        if value_type == 'bool':
+        if isinstance(value, bool):
             value = int(value)
-        if value_type in ('int', 'float'):
+        if isinstance(value, (float, int)):
             value = str(value)
 
         found_key, in_message, data = await search_key(key, self.__channel)
         if found_key:
             data[key] = value
-            data["type"] = value_type
+            data["type"] = value.__class__.__name__
             await in_message.edit(content=json.dumps(data))
         else:
-            data = {key: value, "type": value_type}
+            data = {key: value, "type": value.__class__.__name__}
             await self.__channel.send(json.dumps(data))
 
+    @cache
     async def get(self, key: str):
         key_check(key)
         found_key, in_message, data = await search_key(key, self.__channel)
@@ -60,6 +61,7 @@ class Database:
             value = None
         return value
 
+    @cache
     async def delete(self, key: str):
         key_check(key)
         found_key, in_message, data = await search_key(key, self.__channel)
