@@ -1,6 +1,8 @@
 import json
 from functools import lru_cache
 from json.decoder import JSONDecodeError
+import logging
+logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
 
 
 def str_is_illegal(s: str):
@@ -33,7 +35,7 @@ async def search_key(key: str, channel):
         try:
             data = json.loads(str(cnt))
         except JSONDecodeError:
-            print(f"-----\nJSONDecodeerror: {cnt}\n-----")
+            logging.info(f"-----\nJSONDecodeerror: {cnt}\n-----")
             continue
         if key in list(data.keys()):
             found_key = True
