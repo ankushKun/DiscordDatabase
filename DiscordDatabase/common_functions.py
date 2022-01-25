@@ -5,7 +5,7 @@ import logging
 
 
 log = logging.getLogger(__name__)
-log.setLevel(log.INFO)
+log.setLevel(logging.INFO)
 
 ch = logging.StreamHandler()
 ch.setLevel(logging.DEBUG)
