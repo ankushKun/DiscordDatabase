@@ -22,7 +22,7 @@ class Database:
 
     @lru_cache
     async def set(self, key: str, value):
-        key_check(key)
+        key_check(str(key))
         if len(str(value)) <= 0:
             raise ValueError("value should atleast have a length of 1")
 
@@ -50,7 +50,7 @@ class Database:
 
     @lru_cache
     async def get(self, key: str):
-        key_check(key)
+        key_check(str(key))
         found_key, in_message, data = await search_key(key, self.__channel)
         if found_key:
             value = data[key]
@@ -69,7 +69,7 @@ class Database:
 
     @lru_cache
     async def delete(self, key: str):
-        key_check(key)
+        key_check(str(key))
         found_key, in_message, data = await search_key(key, self.__channel)
         if found_key:
             await in_message.delete()

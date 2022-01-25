@@ -2,7 +2,8 @@ import json
 from functools import lru_cache
 from json.decoder import JSONDecodeError
 import logging
-logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
+log = logging.getLogger(__name__)
+log.basicConfig(format='%(asctime)s - %(message)s', level=log.INFO)
 
 
 def str_is_illegal(s: str):
