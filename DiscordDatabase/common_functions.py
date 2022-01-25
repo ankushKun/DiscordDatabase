@@ -2,8 +2,16 @@ import json
 from functools import lru_cache
 from json.decoder import JSONDecodeError
 import logging
+
+
 log = logging.getLogger(__name__)
-log.basicConfig(format='%(asctime)s - %(message)s', level=log.INFO)
+log.setLevel(log.INFO)
+
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(message)s')
+ch.setFormatter(formatter)
+log.addHandler(ch)
 
 
 def str_is_illegal(s: str):
