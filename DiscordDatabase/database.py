@@ -1,6 +1,6 @@
 import json
 from DiscordDatabase.common_functions import key_check, search_key
-from functools import cache, cached_property
+from functools import lru_cache, cached_property
 
 from DiscordDatabase.common_functions import key_check, search_key
 
@@ -20,7 +20,7 @@ class Database:
     def get_category_id(self):
         return self.__category.id
 
-    @cache
+    @lru_cache
     async def set(self, key: str, value):
         key_check(key)
         if len(str(value)) <= 0:
@@ -48,7 +48,7 @@ class Database:
             data = {key: value, "type": value.__class__.__name__}
             await self.__channel.send(json.dumps(data))
 
-    @cache
+    @lru_cache
     async def get(self, key: str):
         key_check(key)
         found_key, in_message, data = await search_key(key, self.__channel)
@@ -67,7 +67,7 @@ class Database:
             value = None
         return value
 
-    @cache
+    @lru_cache
     async def delete(self, key: str):
         key_check(key)
         found_key, in_message, data = await search_key(key, self.__channel)
