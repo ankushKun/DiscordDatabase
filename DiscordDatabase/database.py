@@ -20,7 +20,6 @@ class Database:
     def get_category_id(self):
         return self.__category.id
 
-    @lru_cache
     async def set(self, key: str, value):
         key_check(str(key))
         if len(str(value)) <= 0:
