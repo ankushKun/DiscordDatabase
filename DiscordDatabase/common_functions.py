@@ -36,7 +36,6 @@ def key_check(key: str):
     return True
 
 
-@lru_cache
 async def search_key(key: str, channel):
     found_key, in_message = None, None
     async for message in channel.history(limit=None):
