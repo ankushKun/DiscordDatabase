@@ -46,6 +46,7 @@ class Database:
         else:
             data = {key: value, "type": value.__class__.__name__}
             await self.__channel.send(json.dumps(data))
+        return
 
     @lru_cache
     async def get(self, key: str):
