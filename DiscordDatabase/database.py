@@ -38,9 +38,9 @@ class Database:
         if isinstance(value, (float, int)):
             value = str(value)
 
-        found_key, in_message, data = await search_key(key, self.__channel)
+        found_key, in_message, data = await search_key(str(key), self.__channel)
         if found_key:
-            data[key] = value
+            data[str(key)] = value
             data["type"] = value.__class__.__name__
             await in_message.edit(content=json.dumps(data))
         else:
@@ -67,11 +67,10 @@ class Database:
             value = None
         return value
 
-    @lru_cache
     async def delete(self, key: str):
         key_check(str(key))
         found_key, in_message, data = await search_key(key, self.__channel)
         if found_key:
             await in_message.delete()
             return data[key]  # return the value of that key after deleting
-        return None  # returns None if key waws not found and nothing was deleted
+        return  # returns None if key waws not found and nothing was deleted

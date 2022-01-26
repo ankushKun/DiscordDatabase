@@ -1,5 +1,3 @@
-from functools import lru_cache
-
 from DiscordDatabase.common_functions import format_string
 from DiscordDatabase.database import Database
 
@@ -10,7 +8,6 @@ class DiscordDatabase:
         self.guild_id = guild_id
         self.client = client
 
-    @lru_cache
     async def __create(self, category_name: str, channel_name: str):
         category_name = format_string(category_name)  # No spaces allowed
         channel_name = format_string(channel_name)  # No spaces allowed
@@ -51,7 +48,6 @@ class DiscordDatabase:
 
         return category, channel
 
-    @lru_cache
     async def new(self, category_name, channel_name):
         await self.client.wait_until_ready()
         self.__GUILD = self.client.get_guild(self.guild_id)
