@@ -45,7 +45,7 @@ async def search_key(key: str, channel):
         except JSONDecodeError:
             logging.info(f"-----\nJSONDecodeerror: {cnt}\n-----")
             continue
-        if key in list(data.keys()):
+        if str(key) in list(map(lambda a: str(a),list(data.keys()))):
             found_key = True
             in_message = message
             return found_key, in_message, data  # return useful data if keyis found

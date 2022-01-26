@@ -53,7 +53,7 @@ class Database:
         key_check(str(key))
         found_key, in_message, data = await search_key(key, self.__channel)
         if found_key:
-            value = data[key]
+            value = data[str(key)]
             value_type = data["type"]
 
             if value_type == "int":
