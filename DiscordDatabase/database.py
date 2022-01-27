@@ -1,8 +1,7 @@
 import json
-from DiscordDatabase.common_functions import key_check, search_key
-from functools import lru_cache, cached_property
+from functools import cached_property, lru_cache
 
-from DiscordDatabase.common_functions import key_check, search_key
+from .common_functions import cache, key_check, search_key
 
 
 class Database:
@@ -48,7 +47,7 @@ class Database:
             await self.__channel.send(json.dumps(data))
         return
 
-    @lru_cache
+    @cache()
     async def get(self, key: str):
         key_check(str(key))
         found_key, in_message, data = await search_key(key, self.__channel)
