@@ -1,6 +1,6 @@
 import json
 import logging
-from functools import lru_cache
+from cachetools import LRUCache
 from json.decoder import JSONDecodeError
 
 log = logging.getLogger(__name__)
@@ -71,8 +71,7 @@ class Strategy(enum.Enum):
 def cache(maxsize=128, strategy=Strategy.lru, ignore_kwargs=False):
     def decorator(func):
         if strategy is Strategy.lru:
-            _internal_cache = lru_cache(maxsize=maxsize)
-            _stats = _internal_cache.get_stats
+            _internal_cache = LRUCache(maxsize=maxsize)
         elif strategy is Strategy.raw:
             _internal_cache = {}
 
@@ -150,7 +149,6 @@ def cache(maxsize=128, strategy=Strategy.lru, ignore_kwargs=False):
         wrapper.cache = _internal_cache
         wrapper.get_key = lambda *args, **kwargs: _make_key(args, kwargs)
         wrapper.invalidate = _invalidate
-        wrapper.get_stats = _stats
         wrapper.invalidate_containing = _invalidate_containing
         return wrapper
 
