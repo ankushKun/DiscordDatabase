@@ -33,6 +33,5 @@ setup(
         'py-cord':  ["py-cord"]
     },
     packages=find_packages(),
-    include_package_data=True,
-    install_requires=["cachetools"]
+    include_package_data=True
 )

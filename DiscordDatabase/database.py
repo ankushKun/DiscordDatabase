@@ -1,7 +1,7 @@
 import json
 from functools import cached_property
 
-from .common_functions import cache, key_check, search_key
+from .common_functions import key_check, search_key
 
 
 class Database:
@@ -47,7 +47,6 @@ class Database:
             await self.__channel.send(json.dumps(data))
         return
 
-    @cache()
     async def get(self, key: str):
         key_check(str(key))
         found_key, in_message, data = await search_key(key, self.__channel)
@@ -71,5 +70,5 @@ class Database:
         found_key, in_message, data = await search_key(key, self.__channel)
         if found_key:
             await in_message.delete()
-            return data[key]  # return the value of that key after deleting
+            return data.get(str(key))  # return the value of that key after deleting
         return  # returns None if key waws not found and nothing was deleted
