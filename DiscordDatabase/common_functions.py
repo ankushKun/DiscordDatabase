@@ -1,6 +1,15 @@
 import json
+import logging
 from json.decoder import JSONDecodeError
 
+log = logging.getLogger(__name__)
+log.setLevel(logging.INFO)
+
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(message)s')
+ch.setFormatter(formatter)
+log.addHandler(ch)
 
 def str_is_illegal(s: str):
     # returns True if string contains any illegal characters
@@ -19,24 +28,20 @@ def key_check(key: str):
 
     if str_is_illegal(key):
         # 'key' should contain only alphabets and numbers
-        raise ValueError(
-            "Key should contain only alphanumeric character")
+        raise ValueError("Key should contain only alphanumeric character")
 
     return True
 
-
 async def search_key(key: str, channel):
-    channel_history = await channel.history(limit=None).flatten()
-
     found_key, in_message = None, None
-    for message in channel_history:
+    async for message in channel.history(limit=None):
         cnt = message.content
         try:
             data = json.loads(str(cnt))
         except JSONDecodeError:
-            print(f"-----\nJSONDecodeerror: {cnt}\n-----")
+            logging.info(f"-----\nJSONDecodeerror: {cnt}\n-----")
             continue
-        if key in list(data.keys()):
+        if str(key) in list(map(lambda a: str(a),list(data.keys()))):
             found_key = True
             in_message = message
             return found_key, in_message, data  # return useful data if keyis found
