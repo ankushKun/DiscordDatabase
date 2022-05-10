@@ -15,7 +15,7 @@ with open(path.join(HERE, "README.md"), encoding="utf-8") as f:
 # This call to setup() does all the work
 setup(
     name="DiscordDatabase",
-    version="0.1.2",
+    version="0.1.3",
     description="CRUD database for discord bots, using discord text channels to store data",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -29,9 +29,9 @@ setup(
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
     ],
-    extras_require = {
-        'py-cord':  ["py-cord"]
-    },
+    # extras_require = {
+        # 'py-cord':  ["py-cord"]
+    # },
     packages=find_packages(),
     include_package_data=True
 )
