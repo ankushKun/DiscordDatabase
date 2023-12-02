@@ -1,5 +1,7 @@
 # Discord Database
 
+**NOTE: Since there have been many breaking changes with how Discord API and the python library work, this project has been scraped. Apologies for inconvenience**
+
 A CRUD (Create Read Update Delete) database for python Discord bot developers. All data is stored in key-value pairs directly on discord in the form of text messages, in the text channel that you specify.
 
 ## Installation
